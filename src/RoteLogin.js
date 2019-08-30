@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {authenticate} from './Api';
-import { navigate } from '@reach/router/lib/history';
+import { navigate } from '@reach/router';
 
 class RoteLogin extends Component {
     constructor(props){
