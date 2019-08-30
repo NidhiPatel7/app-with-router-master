@@ -21,14 +21,26 @@ class RouteProjects extends Component {
 
   }
 
- 
-componentDidMount()
-{
-  //console.log('RouteProjects mounted');
+ routeGetProjects = () =>{
   getProjects().then(res => {
     this.setState({projects:res.data})
   }) 
-}
+ }
+ componentDidMount()
+ {
+   this.routeGetProjects();//for refresh data when delete it
+ }
+
+ //==== this is when we only get projects (list)===
+ //but when we delete data we want to refresh list as well so we use top like 
+ //set method in routeGetProjects and call routeGetProjects in didmount
+// componentDidMount()
+// {
+//   //console.log('RouteProjects mounted');
+//   getProjects().then(res => {
+//     this.setState({projects:res.data})
+//   }) 
+// }
 
   render(){
     return (
@@ -40,9 +52,7 @@ componentDidMount()
                   var projectProps = {
                     ...project,
                     key: project.id,
-                    deleteProjects: this.deleteProjects,
-                    setActiveView: this.setActiveView,
-                    setProjectToUpdate: this.setProjectToUpdate
+                   refreshData: this.routeGetProjects,//for refresh data when delete it
                   };
                   return (<Project {...projectProps} />)
                 })

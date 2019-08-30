@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import { Link } from "@reach/router";//after install in terminal add it
+import { Link, navigate } from "@reach/router";//after install in terminal add it
+import {deleteProjects} from './Api';
 class  Project extends Component {
 
 	handleTrashClick = () => {
-		// var {deleteProjects,id} = this.props;
+		var {id,refreshData} = this.props;
 
-		// deleteProjects(id);
+		deleteProjects(id).then(res => refreshData());
+		//deleteProjects(id).then(res => window.location.reload); one way bcz its reload whole page and some time if we store temp data its gone as well so use 2nd method wich is top one
 	}
 	
 
@@ -15,7 +17,7 @@ class  Project extends Component {
 
 	    return (
 	      <div className="card project">
-	        <img className="card-img-top" src="project.jpg" alt="Card image cap" />
+	        <img className="card-img-top" src="/project.jpg" alt="Card image cap" />
 	        <div className="card-body">
 	          <h5 className="card-title">{name}</h5>
 	          <p className="card-text">{description}</p>

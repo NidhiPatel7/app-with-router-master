@@ -20,4 +20,18 @@ var addProjects = (data) => {
     return axios.put(urlPrefix+'/projects/'+id,data)
     
   }
-export {serverUrl,getProjects,getTypes,addProjects,getSingleProject,updateProjects} //
+  var deleteProjects = (id) => {
+    return axios.delete(urlPrefix+'/projects/'+id)
+  }
+  var getSingleType = (id) => {
+    return axios.get(urlPrefix+'/types/'+id)
+  }
+  var authenticate = (data) => {//for login
+    return axios.post(urlPrefix+'/authenticate',data)      
+  }
+  var getSingleUser = (id) => {//if refresh dont want t login again like cookie
+    return axios.get(urlPrefix+'/users/'+id)
+    
+  }
+
+export {serverUrl,getProjects,getTypes,addProjects,getSingleProject,updateProjects,deleteProjects,getSingleType,authenticate,getSingleUser} //
